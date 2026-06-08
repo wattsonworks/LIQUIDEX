@@ -61,7 +61,7 @@
     s.appendChild(el("path", { d: vp, fill: "none", stroke: C.amber, "stroke-width": 1.4, "stroke-opacity": .7 }));
     s.appendChild(txt({ x: L + 6, y: yOf(103.4) - 5, "font-size": 9.5, fill: C.amber }, "VWAP"));
     // POC + VA
-    [["POC 104.4", 104.4, C.poc, 2], ["VAH 106.3", 106.3, C.vah, 1], ["VAL 102.1", 102.1, C.vah, 1]].forEach(([t, p, c, wd]) => {
+    [["POC 104.4 UP+2", 104.4, C.poc, 2], ["VAH 106.3", 106.3, C.vah, 1], ["VAL 102.1", 102.1, C.vah, 1]].forEach(([t, p, c, wd]) => {
       const y = yOf(p); s.appendChild(el("line", { x1: L, y1: y, x2: R, y2: y, stroke: c, "stroke-width": wd, "stroke-dasharray": wd === 2 ? "" : "4 4", "stroke-opacity": .8 }));
       s.appendChild(txt({ x: L + 6, y: y - 4, "font-size": 9.5, fill: c }, t));
     });
@@ -105,7 +105,7 @@
     const cs = series(N, way, 0.55, (i, k) => { if (i === 3) k.l = 99.7; if (i === 8 || i === 28) k.h = 107; if (i === 20) k.h = 106.95; if (i === 16 || i === 24) k.l = 101.4; });
     const pools = [
       { p: 107.0, c: C.bsl, w: 3.2, op: .95, dash: "", lab: "EQH ×3   $$$" },
-      { p: 105.6, c: C.bslSoft, w: 1, op: .45, dash: "5 4", lab: "BSL ×1   $" },
+      { p: 105.6, c: C.bslSoft, w: 1, op: .45, dash: "5 4", lab: "STK ×3 v12seg" },
       { p: 101.4, c: C.ssl, w: 2.2, op: .85, dash: "", lab: "SSL ×2   $$" },
       { p: 100.0, c: C.swept, w: 1.2, op: .7, dash: "2 4", lab: "EQL ×2   SWEPT" },
     ];
@@ -185,7 +185,8 @@
     // divergence marker
     s.appendChild(el("line", { x1: xOf(56), y1: yOf(price[56]), x2: xOf(72), y2: yOf(price[72]), stroke: C.ink, "stroke-width": 1, "stroke-dasharray": "3 3", "stroke-opacity": .5 }));
     s.appendChild(el("line", { x1: xOf(56), y1: yOf(cvd[56]), x2: xOf(72), y2: yOf(cvd[72]), stroke: C.green, "stroke-width": 1, "stroke-dasharray": "3 3", "stroke-opacity": .5 }));
-    s.appendChild(txt({ x: xOf(64), y: yOf((price[64] + cvd[64]) / 2), "font-size": 11, fill: C.cyan, "text-anchor": "middle", "font-weight": "bold" }, "↕ DIV"));
+    s.appendChild(txt({ x: xOf(64), y: yOf((price[64] + cvd[64]) / 2), "font-size": 11, fill: "#00E676", "text-anchor": "middle", "font-weight": "bold" }, "DIV+ ×2"));
+    s.appendChild(txt({ x: xOf(30), y: yOf(cvd[30]) - 8, "font-size": 10, fill: C.cyan, "text-anchor": "middle", "font-weight": "bold" }, "CVD BRK+"));
     // VPIN bars at bottom
     for (let i = 0; i < N; i += 2) { const v = (Math.sin(i / 7) + 1) / 2 * (i > 56 ? 1.4 : .8); const bh = v * 34; s.appendChild(el("rect", { x: xOf(i) - 2, y: B - bh, width: 4, height: bh, fill: i > 56 ? C.casc : C.cyan, "fill-opacity": .6 })); }
     s.appendChild(txt({ x: L + 6, y: T - 4 + 14, "font-size": 9.5, fill: C.ink }, "price"));
