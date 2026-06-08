@@ -9,6 +9,10 @@ window.LIQUIDEX_CONFIG = {
   vatRate: 0.18,            // Israeli VAT (18%). Applied where required (see per-method `vat`).
   currencySymbol: "$",
 
+  /* ── Free trial ──────────────────────────────────────────── */
+  trialEnabled: true,
+  trialDays: 7,             // free trial length — activated with TradingView username only
+
   /* ── Contact / access ────────────────────────────────────── */
   contactEmail: "FILL ME — your@email.com",     // where buyers send their TradingView username
   telegram: "",                                  // optional: "https://t.me/yourhandle"

@@ -142,8 +142,56 @@
     return "";
   }
 
-  function init() { bindReveals(); renderCheckout(); }
+  /* ── Free trial widget (username-only activation) ──────────── */
+  function buildTrialMsg(user, days) {
+    return window.LIQ_I18N?.current === "he"
+      ? `שלום, אני רוצה להפעיל ניסיון חינם של ${days} ימים ל-LIQUIDEX. שם המשתמש שלי ב-TradingView: ${user}`
+      : `Hi, I'd like to activate a free ${days}-day LIQUIDEX trial. My TradingView username is: ${user}`;
+  }
+  function renderTrial() {
+    const hosts = document.querySelectorAll("[data-trial-form]");
+    if (!hosts.length || !window.LIQUIDEX_CONFIG) return;
+    const c = window.LIQUIDEX_CONFIG;
+    if (c.trialEnabled === false) { hosts.forEach((h) => (h.hidden = true)); return; }
+    const days = c.trialDays || 7;
+    hosts.forEach((host) => {
+      host.innerHTML = `
+        <span class="tag">${t("🎁 " + days + " ימים חינם", "🎁 " + days + " days free")}</span>
+        <h3>${t("נסו שבוע על חשבוננו", "Try a week on us")}</h3>
+        <p class="trial-sub">${t("רק שם המשתמש שלכם ב-TradingView. ללא כרטיס אשראי, ללא התחייבות.", "Just your TradingView username. No card, no commitment.")}</p>
+        <div class="trial-row">
+          <input class="trial-input" autocomplete="off" spellcheck="false"
+            placeholder="${t("שם משתמש ב-TradingView", "TradingView username")}">
+          <button class="btn btn-primary" data-trial-go>${t("הפעילו שבוע חינם", "Activate free week")}</button>
+        </div>
+        <div data-trial-out></div>
+        <small class="trial-note">${t("גישת Invite-Only ל-" + days + " ימים תוך 24 שעות.", "Invite-only access for " + days + " days within 24h.")}</small>`;
+      const input = host.querySelector(".trial-input");
+      const out = host.querySelector("[data-trial-out]");
+      host.querySelector("[data-trial-go]").addEventListener("click", () => {
+        const u = (input.value || "").trim().replace(/^@/, "");
+        if (!u) { input.classList.add("err"); input.focus(); return; }
+        input.classList.remove("err");
+        const msg = buildTrialMsg(u, days);
+        const email = c.contactEmail || "";
+        const wa = (c.whatsapp || "").replace(/[^0-9]/g, "");
+        const tg = c.telegram || "";
+        const subj = encodeURIComponent("LIQUIDEX — " + days + "-day free trial");
+        const body = encodeURIComponent(msg);
+        let btns = "";
+        if (email && !/FILL ME/i.test(email))
+          btns += `<a class="btn btn-primary" href="mailto:${email}?subject=${subj}&body=${body}">${t("שליחה במייל", "Send by email")}</a>`;
+        if (wa) btns += `<a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/${wa}?text=${body}">WhatsApp</a>`;
+        if (tg) btns += `<a class="btn btn-ghost" target="_blank" rel="noopener" href="${tg}">Telegram</a>`;
+        btns += `<button class="btn btn-outline" data-copy="${msg.replace(/"/g, "&quot;")}">${t("העתקת ההודעה", "Copy message")}</button>`;
+        out.innerHTML = `<div class="trial-actions">${btns}</div>
+          <p class="g trial-ok">${t("שלחו לנו את ההודעה ונפעיל את הניסיון תוך 24 שעות.", "Send us the message and we activate your trial within 24h.")}</p>`;
+      });
+    });
+  }
+
+  function init() { bindReveals(); renderCheckout(); renderTrial(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
-  document.addEventListener("langchange", () => { renderCheckout(); });
+  document.addEventListener("langchange", () => { renderCheckout(); renderTrial(); });
 })();
