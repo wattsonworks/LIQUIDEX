@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIQUIDEX — Checkout | תשלום</title>
+<meta name="description" content="Get LIQUIDEX invite-only access — $100/month. Card, Bit, crypto, bank transfer or cash.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Heebo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/liquidex.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html"><span class="dot"></span>LIQUIDEX</a>
+    <div class="nav-links">
+      <a href="index.html" data-he="← חזרה לדף הבית" data-en="← Back to home"></a>
+      <a href="manual.html" data-he="המדריך" data-en="Manual"></a>
+      <button class="lang-btn" data-lang-toggle>EN</button>
+    </div>
+  </div>
+</nav>
+
+<section style="padding-top:56px">
+  <div class="wrap" style="max-width:920px">
+    <p class="eyebrow" data-he="תשלום מאובטח" data-en="Secure Checkout"></p>
+    <h1 class="title" data-he="קבלת גישה ל-LIQUIDEX" data-en="Get LIQUIDEX access"></h1>
+    <p class="lede mb-3" data-he="מנוי חודשי · גישת Invite-Only מלאה ב-TradingView · ביטול בכל עת." data-en="Monthly membership · full invite-only TradingView access · cancel anytime."></p>
+
+    <div class="grid" style="grid-template-columns:1.4fr .9fr;gap:26px;align-items:start">
+      <!-- payment app (rendered from config by app.js) -->
+      <div>
+        <div id="pay-app"></div>
+      </div>
+
+      <!-- order summary + steps -->
+      <aside>
+        <div class="panel" style="padding:22px">
+          <h4 data-he="סיכום הזמנה" data-en="Order summary"></h4>
+          <div class="detail-row mt-1"><span data-he="מנוי LIQUIDEX" data-en="LIQUIDEX membership"></span><span>$100 / <span data-he="חודש" data-en="mo"></span></span></div>
+          <div class="detail-row"><span data-he="גישה" data-en="Access"></span><span data-he="Invite-Only" data-en="Invite-only"></span></div>
+          <div class="detail-row"><span data-he="התחייבות" data-en="Commitment"></span><span data-he="חודשי · ביטול חופשי" data-en="Monthly · cancel free"></span></div>
+          <p style="font-size:12.5px;color:var(--muted-2);margin-top:12px" data-he="הסכום הסופי (כולל מע״מ אם חל) מוצג ליד אמצעי התשלום שבחרתם." data-en="The final amount (incl. VAT where applicable) is shown next to the payment method you choose."></p>
+        </div>
+
+        <div class="panel" style="padding:22px;margin-top:18px">
+          <h4 data-he="איך מקבלים גישה" data-en="How access works"></h4>
+          <div class="steps mt-1" style="gap:12px">
+            <div class="step" style="padding:13px 15px"><div><h4 style="font-size:14.5px" data-he="שלמו" data-en="Pay"></h4><p style="font-size:13px" data-he="בחרו אמצעי תשלום למעלה והשלימו." data-en="Pick a method above and complete it."></p></div></div>
+            <div class="step" style="padding:13px 15px"><div><h4 style="font-size:14.5px" data-he="שלחו שם משתמש" data-en="Send username"></h4><p style="font-size:13px" data-he="שלחו צילום אישור + שם המשתמש שלכם ב-TradingView." data-en="Send the receipt + your TradingView username."></p></div></div>
+            <div class="step" style="padding:13px 15px"><div><h4 style="font-size:14.5px" data-he="קבלו גישה" data-en="Get access"></h4><p style="font-size:13px" data-he="גישת Invite-Only תוך 24 שעות." data-en="Invite-only access within 24 hours."></p></div></div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="disclaimer mt-4">
+      <b data-he="גילוי נאות" data-en="Disclaimer"></b>
+      <span data-he=" — LIQUIDEX הוא כלי ניתוח וחינוך בלבד ואינו ייעוץ השקעות או הבטחת רווח. מסחר כרוך בסיכון לאובדן הון. רכישה מהווה הסכמה לכך." data-en=" — LIQUIDEX is an analysis and education tool only, not investment advice or a profit guarantee. Trading carries risk of capital loss. Purchase constitutes acceptance of this."></span>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <p style="font-size:13px;color:var(--muted-2)">© <span data-year></span> LIQUIDEX · wattsonworks. <span data-he="לתמיכה, צרו קשר באמצעי שמופיע ליד אמצעי התשלום." data-en="For support, contact via the details shown by each payment method."></span></p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

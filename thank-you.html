@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIQUIDEX — Thank you | תודה</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Heebo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/liquidex.css">
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><a class="brand" href="index.html"><span class="dot"></span>LIQUIDEX</a><div class="nav-links"><button class="lang-btn" data-lang-toggle>EN</button></div></div></nav>
+
+<section style="min-height:78vh;display:grid;place-content:center">
+  <div class="wrap" style="max-width:680px">
+    <p class="eyebrow" data-he="התקבל ✓" data-en="Received ✓"></p>
+    <h1 class="title" data-he="תודה! נותר צעד אחד." data-en="Thank you! One step left."></h1>
+    <p class="lede mb-3" data-he="כדי להפעיל את הגישה, שלחו לנו את שם המשתמש שלכם ב-TradingView (וצילום אישור התשלום). נעניק גישת Invite-Only תוך 24 שעות." data-en="To activate access, send us your TradingView username (and the payment receipt). We grant invite-only access within 24 hours."></p>
+
+    <div class="panel" style="padding:22px">
+      <h4 data-he="העתיקו ושלחו אלינו:" data-en="Copy this and send it to us:"></h4>
+      <div class="copy-row"><span id="msg"></span><button id="copybtn" data-he="העתק" data-en="Copy"></button></div>
+      <p class="mt-2" style="color:var(--muted)"><span data-he="לכתובת:" data-en="To:"></span> <b class="g" id="email"></b></p>
+    </div>
+
+    <a class="btn btn-outline mt-3" href="index.html" data-he="חזרה לדף הבית" data-en="Back to home"></a>
+  </div>
+</section>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+(function(){
+  var c = window.LIQUIDEX_CONFIG || {};
+  var email = (c.contactEmail||"");
+  document.getElementById('email').textContent = email;
+  function render(){
+    var he = window.LIQ_I18N && window.LIQ_I18N.current === 'he';
+    var msg = he
+      ? "שלום, שילמתי על מנוי LIQUIDEX. שם המשתמש שלי ב-TradingView: ______  (מצורף אישור תשלום)."
+      : "Hi, I paid for a LIQUIDEX membership. My TradingView username is: ______  (payment receipt attached).";
+    document.getElementById('msg').textContent = msg;
+    document.getElementById('copybtn').setAttribute('data-copy', msg);
+  }
+  render();
+  document.addEventListener('langchange', render);
+})();
+</script>
+</body>
+</html>

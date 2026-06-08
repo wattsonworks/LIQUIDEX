@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LIQUIDEX — Institutional Liquidity Scanner | סורק נזילות מוסדי</title>
+<meta name="description" data-he-doc content="LIQUIDEX — סורק נזילות מוסדי ל-TradingView. ממפה היכן נחות פקודות העצירה של הכסף הגדול, חוזה איזה מאגר ייצוד, ומסמן את הנר המדויק שבו מפל החיסול מתרוקן. $100 לחודש.">
+<meta property="og:title" content="LIQUIDEX — Institutional Liquidity Scanner">
+<meta property="og:description" content="Trade with the big fish, not as their liquidity. Map stop-liquidity, predict the hunt, time the cascade exhaustion.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="og-image.svg">
+<meta name="theme-color" content="#0a0d12">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Heebo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/liquidex.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html"><span class="dot"></span>LIQUIDEX</a>
+    <div class="nav-links">
+      <a href="#thesis" data-he="התזה" data-en="The Thesis"></a>
+      <a href="#cascade" data-he="מפל החיסול" data-en="The Cascade"></a>
+      <a href="#science" data-he="המדע" data-en="The Science"></a>
+      <a href="manual.html" data-he="המדריך המלא" data-en="Full Manual"></a>
+      <a href="#pricing" data-he="מחיר" data-en="Pricing"></a>
+      <button class="lang-btn" data-lang-toggle>EN</button>
+      <a class="btn btn-primary" href="checkout.html" data-he="קבל גישה" data-en="Get Access"></a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow" data-he="Pine Script v6 · מדע הכסף החכם" data-en="Pine Script v6 · Smart Money Science"></p>
+      <h1 data-he='לסחור <span class="g">עם</span> הדגים הגדולים — לא להיות <span class="r">הנזילות</span> שלהם.' data-en='Trade <span class="g">with</span> the big fish — never be their <span class="r">liquidity</span>.' data-html></h1>
+      <p class="lede" data-he="LIQUIDEX ממפה היכן נחות פקודות העצירה המוסדיות, חוזה איזה מאגר נזילות השוק יצוד בהמשך, ומסמן את הנר המדויק שבו מפל חיסול מתרוקן — כך שאתם נכנסים אל ההיפוך במקום לממן אותו." data-en="LIQUIDEX maps where institutional stop-liquidity rests, predicts which pool the market hunts next, and calls the exact bar a liquidation cascade exhausts — so you enter the reversal instead of funding it."></p>
+      <div class="hero-cta">
+        <a class="btn btn-primary btn-lg" href="checkout.html" data-he="קבל את LIQUIDEX · ‎$100 לחודש" data-en="Get LIQUIDEX · $100/mo"></a>
+        <a class="btn btn-outline btn-lg" href="manual.html" data-he="כל פונקציה, מוסברת ↓" data-en="Every function, explained ↓"></a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="n">46+</div><div class="l" data-he="מנועים בזמן אמת" data-en="real-time engines"></div></div>
+        <div class="hero-stat"><div class="n">10</div><div class="l" data-he="שכבות חישוב" data-en="computation phases"></div></div>
+        <div class="hero-stat"><div class="n">5</div><div class="l" data-he="בורסות · CVD מאוחד" data-en="exchanges · merged CVD"></div></div>
+      </div>
+    </div>
+    <div class="terminal reveal">
+      <div class="terminal-bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span class="t">LIQUIDEX · live chart</span></div>
+      <div class="terminal-body" data-chart="hero"></div>
+    </div>
+  </div>
+</header>
+
+<!-- RIBBON -->
+<div class="ribbon-strip">
+  <div class="track">
+    <span>
+      <b>EQH/EQL</b> liquidity pools &nbsp;·&nbsp; <b>💥 CASCADE</b> &nbsp;·&nbsp; <b>VPIN</b> toxicity &nbsp;·&nbsp; aggregated <b>CVD</b> &nbsp;·&nbsp; <b>Kyle&rsquo;s λ</b> &nbsp;·&nbsp; <b>Hurst</b> exponent &nbsp;·&nbsp; <b>Transfer Entropy</b> &nbsp;·&nbsp; <b>Bayesian</b> win-rate &nbsp;·&nbsp; double <b>POC</b> &nbsp;·&nbsp; MTF <b>FVG</b> &nbsp;·&nbsp; <b>Iceberg</b> detection &nbsp;·&nbsp; <b>Order Blocks</b> &nbsp;·&nbsp;
+    </span>
+    <span aria-hidden="true">
+      <b>EQH/EQL</b> liquidity pools &nbsp;·&nbsp; <b>💥 CASCADE</b> &nbsp;·&nbsp; <b>VPIN</b> toxicity &nbsp;·&nbsp; aggregated <b>CVD</b> &nbsp;·&nbsp; <b>Kyle&rsquo;s λ</b> &nbsp;·&nbsp; <b>Hurst</b> exponent &nbsp;·&nbsp; <b>Transfer Entropy</b> &nbsp;·&nbsp; <b>Bayesian</b> win-rate &nbsp;·&nbsp; double <b>POC</b> &nbsp;·&nbsp; MTF <b>FVG</b> &nbsp;·&nbsp; <b>Iceberg</b> detection &nbsp;·&nbsp; <b>Order Blocks</b> &nbsp;·&nbsp;
+    </span>
+  </div>
+</div>
+
+<!-- THESIS -->
+<section id="thesis">
+  <div class="wrap">
+    <p class="eyebrow center" data-he="הבעיה" data-en="The Problem"></p>
+    <h2 class="title center" data-he='הסטופ שלך הוא <span class="g">הדלק</span> שלהם.' data-en='Your stop-loss is <span class="g">their</span> fuel.' data-html></h2>
+    <p class="lede center mb-3" data-he="הכסף הגדול לא יכול להיכנס בגודל מבלי שמישהו ימכור לו. אותו מישהו זה אתם. מאגרי הסטופים של הקמעונאים — מתחת לשפלים שווים, מעל לשיאים שווים — הם בדיוק היכן שהמוסדיים ממלאים פוזיציות ענק. LIQUIDEX הופך את המפה הנסתרת הזו לגלויה." data-en="Institutions cannot fill size without someone selling to them. That someone is you. Retail stop clusters — below equal lows, above equal highs — are exactly where big money loads positions. LIQUIDEX makes that hidden map visible."></p>
+    <div class="grid g-3 mt-3">
+      <div class="card card-glow reveal">
+        <div class="chip red mb-2" data-he="הציד" data-en="The Hunt"></div>
+        <h3 data-he="מאגרי נזילות" data-en="Liquidity Pools"></h3>
+        <p class="lede" style="font-size:15.5px" data-he="כל שיא/שפל שווה הוא ערימת סטופים. LIQUIDEX מסמן EQH (קונים נלכדים מעל) ו-EQL (מוכרים נלכדים מתחת). ככל שיותר נגיעות — יותר דלק, קו בהיר ועבה יותר." data-en="Every equal high/low is a stack of stops. LIQUIDEX tags EQH (trapped shorts above) and EQL (trapped longs below). More touches = more fuel = brighter, thicker line."></p>
+      </div>
+      <div class="card card-glow reveal">
+        <div class="chip" style="border-color:rgba(255,0,64,.4);color:#FF0040" data-he="ההצתה" data-en="The Ignition"></div>
+        <h3 data-he="מפל החיסול" data-en="The Cascade"></h3>
+        <p class="lede" style="font-size:15.5px" data-he="כשהמחיר מנקה מאגר, הסטופים מופעלים, חיסולים בכפייה מזינים עוד חיסולים. LIQUIDEX מזהה את המפל בזמן אמת — 3+ נרות באותו כיוון על נפח." data-en="When price clears a pool, stops trigger, forced liquidations feed more liquidations. LIQUIDEX detects the cascade live — 3+ bars one direction on volume."></p>
+      </div>
+      <div class="card card-glow reveal">
+        <div class="chip cyan mb-2" data-he="ההיפוך" data-en="The Reversal"></div>
+        <h3 data-he="ההתרוקנות (EXH)" data-en="Exhaustion (EXH)"></h3>
+        <p class="lede" style="font-size:15.5px" data-he="הדלק נגמר. LIQUIDEX מסמן את הנר הראשון שבו רצף המפל נשבר — נקודת ההיפוך, היכן שאתם נכנסים עם הכסף החכם ולא נגדו." data-en="The fuel runs out. LIQUIDEX marks the first bar the cascade streak breaks — the reversal, where you enter with smart money, not against it."></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASCADE NARRATIVE -->
+<section id="cascade" style="background:linear-gradient(180deg,transparent,rgba(255,0,64,.025),transparent)">
+  <div class="wrap">
+    <p class="eyebrow" data-he="זרימת המפל" data-en="The Cascade Flow"></p>
+    <h2 class="title" data-he='איך לזהות יעדי חיסול של <span class="r">הדגים הגדולים</span>' data-en='How to spot the <span class="r">big-fish</span> liquidation targets' data-html></h2>
+    <p class="lede mb-3" data-he="זוהי שיטת העבודה המרכזית של LIQUIDEX — לקרוא את הזרימה ממאגר הנזילות אל החיסול ואל ההיפוך." data-en="This is the core LIQUIDEX playbook — reading the flow from liquidity pool to cascade to reversal."></p>
+    <div class="terminal reveal mb-3">
+      <div class="terminal-bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span class="t">cascade → exhaustion sequence</span></div>
+      <div class="terminal-body" data-chart="cascade"></div>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div><h4 data-he="זהה את המאגר העשיר ביותר" data-en="Find the richest pool"></h4><p data-he="חפש את ה-EQH/EQL עם הכי הרבה סימני $ ($$$ = הכי הרבה נגיעות, הכי הרבה סטופים נחים). זהו היעד שהדגים הגדולים רוצים." data-en="Look for the EQH/EQL with the most $ signs ($$$ = most touches, most resting stops). That is the target big fish want."></p></div></div>
+      <div class="step reveal"><div><h4 data-he="המתן לציד" data-en="Wait for the hunt"></h4><p data-he="המחיר נמשך אל המאגר הלא-נגוע (מגנט). אישור נוסף: FVG, אזור הזמנות (OB), או POC מיושרים עם אותו מחיר = יעד בעל הסתברות גבוהה." data-en="Price is drawn toward the unswept pool (a magnet). Extra confirmation: an FVG, Order Block, or POC aligned at the same price = high-probability target."></p></div></div>
+      <div class="step reveal"><div><h4 data-he="קבל את הסחיפה + המפל" data-en="Get the sweep + cascade"></h4><p data-he="המחיר חוצה את המאגר → הוא מסומן SWEPT (אפור) → תיבת 💥 CASCADE נדלקת כשמתחיל רצף חיסול בכפייה. VPIN רעיל ו-CVD מאשרים את עוצמת הזרימה." data-en="Price trades through the pool → it greys out as SWEPT → the 💥 CASCADE box lights up as forced liquidation runs. Toxic VPIN and CVD confirm the flow intensity."></p></div></div>
+      <div class="step reveal"><div><h4 data-he="כנס על ה-EXH" data-en="Enter on the EXH"></h4><p data-he="ברגע שהמפל מתרוקן, LIQUIDEX מסמן EXH — הנר הראשון שבו הרצף נשבר. זו ההיפוך. מנוע הסיגנלים מצרף SL חכם, R:R דינמי ו-3 יעדי רווח." data-en="The moment the cascade exhausts, LIQUIDEX prints EXH — the first bar the streak breaks. That is the reversal. The signal engine attaches a smart SL, dynamic R:R, and 3 take-profit targets."></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIQUIDITY MAP SHOWCASE -->
+<section class="section-sm">
+  <div class="wrap grid g-2" style="align-items:center;gap:40px">
+    <div class="reveal">
+      <p class="eyebrow" data-he="המנוע המרכזי" data-en="The Core Engine"></p>
+      <h2 class="title" data-he="מפת מאגרי הנזילות" data-en="The Liquidity-Pool Map"></h2>
+      <p class="lede" data-he="פיבוטים של שיא = נזילות צד-קנייה (סטופים של שורט, מעל). פיבוטים של שפל = נזילות צד-מכירה (סטופים של לונג, מתחת). רמות כמעט-שוות מתמזגות למאגר אחד; נגיעות + נפח = עוצמה. ברגע שהמחיר עובר דרך מאגר, הוא מאפיר כ-SWEPT — הדלק נוצל." data-en="Swing-high pivots = buy-side liquidity (short stops, above). Swing-low pivots = sell-side liquidity (long stops, below). Near-equal levels merge into one pool; touches + volume = strength. Once price trades through a pool it greys out as SWEPT — fuel spent."></p>
+      <div class="legend mt-2">
+        <span><i style="background:#FF5252"></i><span data-he="צד-קנייה (סטופים של שורט)" data-en="buy-side (short stops)"></span></span>
+        <span><i style="background:#26C6DA"></i><span data-he="צד-מכירה (סטופים של לונג)" data-en="sell-side (long stops)"></span></span>
+        <span><i style="background:#717b8a"></i><span data-he="נסחף — דלק נוצל" data-en="swept — fuel spent"></span></span>
+      </div>
+    </div>
+    <div class="terminal reveal">
+      <div class="terminal-bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span class="t">liquidity-pool map</span></div>
+      <div class="terminal-body" data-chart="liqpool"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE -->
+<section id="science" style="background:rgba(0,0,0,.18)">
+  <div class="wrap">
+    <p class="eyebrow center" data-he="לא אינדיקטור. מנוע מחקר." data-en="Not an indicator. A research engine."></p>
+    <h2 class="title center" data-he="עשר שכבות של מתמטיקה אקדמית" data-en="Ten layers of academic-grade math"></h2>
+    <p class="lede center mb-3" data-he="כל מנוע בנוי על מחקר שפיט מקורי במיקרו-מבנה שוק ותורת האינפורמציה — לא על ממוצעים נעים." data-en="Every engine is built on peer-reviewed microstructure and information-theory research — not moving averages."></p>
+    <div class="grid g-3">
+      <div class="card sci reveal"><div class="cite">Kyle, 1985</div><h4 data-he="למבדה של קייל" data-en="Kyle&rsquo;s Lambda"></h4><p data-he="מודד את השפעת המחיר ליחידת זרימת הזמנות — כמה כסף נדרש כדי להזיז את השוק. נמוך = ספיגה מוסדית." data-en="Measures price impact per unit of order flow — how much money it takes to move the market. Low = institutional absorption."></p></div>
+      <div class="card sci reveal"><div class="cite">Hurst 1951 · Mandelbrot 1968</div><h4 data-he="מעריך הרסט" data-en="Hurst Exponent"></h4><p data-he="מבחין בין שוק מגמתי (H&gt;0.5) למתכנס-לממוצע (H&lt;0.5) — מאמת אם להמשיך עם המגמה או לדהות אותה." data-en="Distinguishes a trending market (H&gt;0.5) from mean-reverting (H&lt;0.5) — validates whether to follow or fade."></p></div>
+      <div class="card sci reveal"><div class="cite">Higuchi, 1988</div><h4 data-he="מימד פרקטלי" data-en="Fractal Dimension"></h4><p data-he="מודד את חספוס מבנה המחיר. גבוה = רעש/דשדוש, נמוך = תנועה נקייה ומכוונת." data-en="Measures the roughness of price structure. High = noise/chop, low = clean directional movement."></p></div>
+      <div class="card sci reveal"><div class="cite">Schreiber, 2000</div><h4 data-he="אנטרופיית העברה" data-en="Transfer Entropy"></h4><p data-he="זרימת אינפורמציה מכוונת: האם הנפח מוביל את המחיר (כסף חכם) או שהמחיר מוביל את הנפח (רדיפה)?" data-en="Directional information flow: does volume lead price (smart money) or does price lead volume (chasing)?"></p></div>
+      <div class="card sci reveal"><div class="cite">Shannon, 1948</div><h4 data-he="אינפורמציה הדדית + אנטרופיה" data-en="Mutual Information + Entropy"></h4><p data-he="עוצמת הצימוד בין CVD למחיר, ומידת אי-הסדר של תשואות — מתי המבנה מתפרק לכאוס." data-en="Coupling strength between CVD and price, and the disorder of returns — when structure breaks into chaos."></p></div>
+      <div class="card sci reveal"><div class="cite">VPIN · Easley et&nbsp;al.</div><h4 data-he="רעילות זרימה (VPIN)" data-en="Flow Toxicity (VPIN)"></h4><p data-he="הסתברות מסחר מבוסס-מידע. VPIN רעיל = זרימה חד-צדדית מתמשכת, לעיתים לפני תנועה חדה." data-en="Probability of informed trading. Toxic VPIN = sustained one-sided flow, often ahead of a sharp move."></p></div>
+      <div class="card sci reveal"><div class="cite">Bayes 1763 · Kelly 1956</div><h4 data-he="ביטחון בייסיאני" data-en="Bayesian Confidence"></h4><p data-he="אחוז הזכייה ההיסטורי לכל ציון סיגנל וכיוון — הביטחון מותאם מהעבר, לא מומצא." data-en="Historical win-rate per signal score and direction — confidence calibrated from the past, not invented."></p></div>
+      <div class="card sci reveal"><div class="cite">Hamilton, 1989</div><h4 data-he="מעברי משטר" data-en="Regime Transitions"></h4><p data-he="אחוזון משך המשטר הנוכחי — עד כמה התקדמנו במחזור צבירה/הפצה לעומת היסטוריה." data-en="Percentile of the current regime&rsquo;s duration — how far into an accumulation/distribution cycle we are vs history."></p></div>
+      <div class="card sci reveal"><div class="cite">Steidlmayer, 1984</div><h4 data-he="מסלול POC חזוי" data-en="Predictive POC Trajectory"></h4><p data-he="פרופיל שוק: לאן נקודת הבקרה (POC) נודדת — מרכז הערך הבא שאליו המחיר נמשך." data-en="Market Profile: where the Point of Control is migrating — the next value center price gravitates to."></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD SHOWCASE -->
+<section class="section-sm">
+  <div class="wrap grid g-2" style="align-items:center;gap:40px">
+    <div class="terminal reveal">
+      <div class="terminal-bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span class="t">aggregated CVD + VPIN</span></div>
+      <div class="terminal-body" data-chart="cvd"></div>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow" data-he="לוח המחוונים" data-en="The Dashboard"></p>
+      <h2 class="title" data-he="טרמינל Q-Intel" data-en="Q-Intel Terminal"></h2>
+      <p class="lede mb-2" data-he="כל המודיעין על המסך, בקריאה אחת: סוג הנכס, משטר התנודתיות, מעריך הרסט, רצף הזכייה/הפסד והפוזיציה הפעילה — באסתטיקת טרמינל מטריקס." data-en="All the intelligence on screen, at a glance: asset type, volatility regime, Hurst exponent, win/loss streak and the active position — in a matrix-terminal aesthetic."></p>
+      <div class="qintel">
+        <div class="row hdr"><span class="g">LIQUIDEX</span><span style="text-align:center;color:#FF0040">DISTRIBUTION</span><span style="color:#555">MICRO</span></div>
+        <div class="row"><span class="k">BTC</span><span style="color:#FFB800">VOLATILE x1.34</span><span class="bar">████░</span></div>
+        <div class="row"><span class="k">HURST</span><span class="g">TREND H=0.63</span><span class="bar">████░</span></div>
+        <div class="row"><span class="k">STREAK</span><span class="g">HOT x3</span><span style="color:#26a69a;text-align:end">LONG</span></div>
+        <div class="row"><span class="k">OBJ</span><span style="color:#888">B:212 L:188</span><span style="color:#888;text-align:end">/500</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section style="background:rgba(0,0,0,.18)">
+  <div class="wrap">
+    <p class="eyebrow center" data-he="מה יש בפנים" data-en="What&rsquo;s Inside"></p>
+    <h2 class="title center" data-he="חבילה אחת. כל שכבת זרימת הזמנות." data-en="One suite. Every order-flow layer."></h2>
+    <p class="lede center mb-3" data-he="להלן קבוצות המנועים. המדריך המלא מסביר כל פונקציה בנפרד, עם הדמיה וכיצד לסחור אותה." data-en="The engine families are below. The full manual explains every single function with a visual and how to trade it."></p>
+    <div class="grid g-4">
+      <div class="card reveal"><h4 class="g" data-he="נזילות וחיסול" data-en="Liquidity & Liquidation"></h4><div class="chips mt-1"><span class="chip">Liquidity Pools</span><span class="chip">Cascade</span><span class="chip">Iceberg</span><span class="chip">Liquidity Voids</span><span class="chip">Enhanced Liquidity</span></div></div>
+      <div class="card reveal"><h4 class="g" data-he="פרופיל נפח וערך" data-en="Profile & Value"></h4><div class="chips mt-1"><span class="chip">Volume Profile</span><span class="chip">Double POC</span><span class="chip">Predictive POC</span><span class="chip">HTF Macro</span><span class="chip">POC Gap</span></div></div>
+      <div class="card reveal"><h4 class="g" data-he="זרימת הזמנות" data-en="Order Flow"></h4><div class="chips mt-1"><span class="chip">Aggregated CVD</span><span class="chip">VPIN</span><span class="chip">Kyle&rsquo;s λ</span><span class="chip">CVD Bands</span><span class="chip">Whale Absorb</span><span class="chip">Divergence</span></div></div>
+      <div class="card reveal"><h4 class="g" data-he="מבנה שוק" data-en="Market Structure"></h4><div class="chips mt-1"><span class="chip">Order Blocks</span><span class="chip">ICS Fractal OB</span><span class="chip">MTF FVG</span><span class="chip">Rejection Blocks</span><span class="chip">MSB</span></div></div>
+      <div class="card reveal"><h4 class="g" data-he="משטר ואינפורמציה" data-en="Regime & Information"></h4><div class="chips mt-1"><span class="chip">Auto Regime</span><span class="chip">Hurst</span><span class="chip">Fractal Dim</span><span class="chip">Entropy</span><span class="chip">Transfer Entropy</span></div></div>
+      <div class="card reveal"><h4 class="g" data-he="סיגנלים וביצוע" data-en="Signals & Execution"></h4><div class="chips mt-1"><span class="chip">Dual Signal Engine</span><span class="chip">Bayesian WR</span><span class="chip">Smart SL</span><span class="chip">Multi-TP</span><span class="chip">Trade Tracker</span></div></div>
+      <div class="card reveal"><h4 class="g" data-he="קונפלואנס" data-en="Confluence"></h4><div class="chips mt-1"><span class="chip">Confluence Zones</span><span class="chip">ABS@POC</span><span class="chip">VWAP Reclaim</span><span class="chip">ORB</span><span class="chip">FLOW</span></div></div>
+      <div class="card reveal"><h4 class="g" data-he="הקשר ולוח" data-en="Context & Dashboard"></h4><div class="chips mt-1"><span class="chip">VWAP Corridor</span><span class="chip">Sessions</span><span class="chip">EMA 55/200</span><span class="chip">Q-Intel Table</span><span class="chip">Zoom Engine</span></div></div>
+    </div>
+    <div class="center mt-4"><a class="btn btn-ghost btn-lg" href="manual.html" data-he="פתח את המדריך המלא — כל פונקציה מוסברת ↗" data-en="Open the full manual — every function explained ↗"></a></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <p class="eyebrow center" data-he="מחיר" data-en="Pricing"></p>
+    <h2 class="title center" data-he="גישה מלאה. הכל כלול." data-en="Full access. Everything included."></h2>
+    <div class="price-card reveal mt-3">
+      <span class="ribbon" data-he="הכי פופולרי" data-en="Most Popular"></span>
+      <div class="center"><div class="eyebrow" style="justify-content:center" data-he="מנוי LIQUIDEX" data-en="LIQUIDEX Membership"></div></div>
+      <div class="price-amount"><span class="cur">$</span><span class="n">100</span><span class="per" data-he="/ חודש" data-en="/ month"></span></div>
+      <p class="center" style="color:var(--muted)" data-he="גישת Invite-Only מלאה ב-TradingView" data-en="Full invite-only access on TradingView"></p>
+      <ul class="price-list">
+        <li data-he="כל 46+ המנועים — נזילות, מפל, CVD, פרופיל, מבנה, סיגנלים" data-en="All 46+ engines — liquidity, cascade, CVD, profile, structure, signals"></li>
+        <li data-he="מפת מאגרי נזילות + זיהוי מפל חיסול בזמן אמת" data-en="Liquidity-pool map + real-time cascade detection"></li>
+        <li data-he="מנוע סיגנלים עם SL חכם, R:R דינמי ו-3 יעדי רווח" data-en="Signal engine with smart SL, dynamic R:R and 3 take-profits"></li>
+        <li data-he="לוח Q-Intel + התראות עשירות ב-TradingView" data-en="Q-Intel dashboard + rich TradingView alerts"></li>
+        <li data-he="עובד על קריפטו, מניות, זהב, פורקס — וגרפי Range" data-en="Works on crypto, stocks, gold, forex — and Range charts"></li>
+        <li data-he="עדכונים שוטפים ותמיכה" data-en="Ongoing updates and support"></li>
+      </ul>
+      <a class="btn btn-primary btn-block btn-lg" href="checkout.html" data-he="קבל גישה עכשיו" data-en="Get access now"></a>
+      <p class="vat-note" data-he="המחירים בדולר ארה״ב. ייתכן ויתווסף מע״מ 18% (קריפטו/אשראי) בהתאם לאמצעי התשלום." data-en="Prices in USD. 18% VAT may be added (crypto/card) depending on payment method."></p>
+    </div>
+    <p class="center mt-3" style="color:var(--muted-2);font-size:14px" data-he="אמצעי תשלום: אשראי (IsraCart) · Bit · קריפטו (USDT/USDC) · העברה בנקאית · מזומן" data-en="Payment methods: Card (IsraCart) · Bit · Crypto (USDT/USDC) · Bank transfer · Cash"></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" style="background:rgba(0,0,0,.18)">
+  <div class="wrap" style="max-width:820px">
+    <p class="eyebrow center" data-he="שאלות נפוצות" data-en="FAQ"></p>
+    <h2 class="title center mb-3" data-he="כל מה שצריך לדעת" data-en="Everything you need to know"></h2>
+    <details class="reveal"><summary data-he="איך אני מקבל את LIQUIDEX אחרי התשלום?" data-en="How do I receive LIQUIDEX after payment?"></summary><div class="a" data-he="LIQUIDEX הוא סקריפט Invite-Only ב-TradingView. לאחר התשלום, שלחו את שם המשתמש שלכם ב-TradingView ונעניק לכם גישה תוך 24 שעות. הסקריפט יופיע אצלכם תחת Invite-Only Scripts." data-en="LIQUIDEX is an invite-only TradingView script. After payment, send us your TradingView username and we grant access within 24 hours. It then appears under your Invite-Only Scripts."></div></details>
+    <details class="reveal"><summary data-he="צריך חשבון TradingView בתשלום?" data-en="Do I need a paid TradingView account?"></summary><div class="a" data-he="חשבון חינמי עובד, אך לתכונות מסוימות (דלתא תוך-נרית מדודה, נתוני מולטי-טיימפריים) נדרשת תוכנית בתשלום של TradingView. הסקריפט נופל בחזרה להערכה כשאין נתונים." data-en="A free account works, but some features (measured intrabar delta, multi-timeframe data) need a paid TradingView plan. The script falls back to estimation when data is unavailable."></div></details>
+    <details class="reveal"><summary data-he="על אילו נכסים זה עובד?" data-en="What markets does it work on?"></summary><div class="a" data-he="קריפטו (עם CVD מאוחד מ-5 בורסות), מניות, זהב, פורקס ומדדים. מנוע הזיהוי האוטומטי מכייל את עצמו לכל נכס ולתנודתיות שלו, כולל גרפי Range." data-en="Crypto (with merged CVD from 5 exchanges), stocks, gold, forex and indices. The auto-detect engine self-calibrates to each asset and its volatility, including Range charts."></div></details>
+    <details class="reveal"><summary data-he="זו עצה פיננסית או הבטחה לרווח?" data-en="Is this financial advice or a profit guarantee?"></summary><div class="a" data-he="לא. LIQUIDEX הוא כלי ניתוח וחינוך בלבד. הוא אינו מהווה ייעוץ השקעות ואינו מבטיח רווחים. מסחר כרוך בסיכון; אתם אחראים להחלטותיכם." data-en="No. LIQUIDEX is an analysis and education tool only. It is not investment advice and guarantees no profit. Trading involves risk; your decisions are your own."></div></details>
+    <details class="reveal"><summary data-he="אפשר לבטל בכל עת?" data-en="Can I cancel anytime?"></summary><div class="a" data-he="כן. המנוי חודשי. אם תפסיקו לשלם, הגישה פשוט לא מתחדשת לחודש הבא. אין התחייבות לטווח ארוך." data-en="Yes. The membership is monthly. If you stop paying, access simply does not renew the next month. No long-term commitment."></div></details>
+    <details class="reveal"><summary data-he="מתי סליקת האשראי תהיה זמינה?" data-en="When will card payment be available?"></summary><div class="a" data-he="סליקת IsraCart מופעלת בימים אלו. בינתיים זמינים Bit, קריפטו, העברה בנקאית ומזומן — כולם מעניקים גישה מיידית לאחר אימות." data-en="IsraCart card processing is being activated. Meanwhile Bit, crypto, bank transfer and cash are available — all grant access immediately after verification."></div></details>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="center">
+  <div class="wrap">
+    <h2 class="title" data-he="הפסיקו להיות הנזילות." data-en="Stop being the liquidity."></h2>
+    <p class="lede center mb-3" data-he="התחילו לקרוא את המפה שהכסף הגדול כבר רואה." data-en="Start reading the map big money already sees."></p>
+    <a class="btn btn-primary btn-lg" href="checkout.html" data-he="קבל את LIQUIDEX · ‎$100 לחודש" data-en="Get LIQUIDEX · $100/mo"></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html" style="margin-bottom:12px"><span class="dot"></span>LIQUIDEX</a>
+        <p style="font-size:14px;max-width:38ch" data-he="סורק נזילות מוסדי ל-TradingView. מדע הכסף החכם — גלוי." data-en="Institutional liquidity scanner for TradingView. Smart-money science — made visible."></p>
+      </div>
+      <div>
+        <h5 data-he="ניווט" data-en="Navigate"></h5>
+        <a href="#thesis" data-he="התזה" data-en="The Thesis"></a>
+        <a href="#cascade" data-he="מפל החיסול" data-en="The Cascade"></a>
+        <a href="manual.html" data-he="המדריך המלא" data-en="Full Manual"></a>
+        <a href="checkout.html" data-he="קבל גישה" data-en="Get Access"></a>
+      </div>
+      <div>
+        <h5 data-he="יצירת קשר" data-en="Contact"></h5>
+        <a href="checkout.html" data-he="רכישה ותמיכה" data-en="Purchase & Support"></a>
+        <a href="#pricing" data-he="מחיר" data-en="Pricing"></a>
+      </div>
+    </div>
+    <div class="disclaimer">
+      <b data-he="גילוי נאות וסיכון" data-en="Risk Disclaimer"></b>
+      <span data-he=" — LIQUIDEX הוא כלי לניתוח טכני ולחינוך בלבד ואינו מהווה ייעוץ השקעות, שיווק השקעות או המלצת מסחר. ביצועי עבר אינם מבטיחים תוצאות עתידיות. מסחר בנכסים פיננסיים, ובמיוחד בקריפטו ובמינוף, כרוך בסיכון משמעותי לאובדן הון. אינך חייב לסחור על סמך הכלי, וכל החלטה היא באחריותך בלבד." data-en=" — LIQUIDEX is a technical-analysis and educational tool only and does not constitute investment advice, investment marketing, or a trading recommendation. Past performance does not guarantee future results. Trading financial assets — especially crypto and with leverage — carries significant risk of capital loss. You are under no obligation to trade based on this tool, and every decision is solely your responsibility."></span>
+    </div>
+    <p style="margin-top:24px;font-size:13px;color:var(--muted-2)">© <span data-year></span> LIQUIDEX · wattsonworks. <span data-he="כל הזכויות שמורות." data-en="All rights reserved."></span></p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# ─────────────────────────────────────────────────────────────
+# PRODUCT SOURCE — NEVER COMMIT. This is the $100/mo paid script.
+# Publishing it would give the product away for free.
+# ─────────────────────────────────────────────────────────────
+LIQUIDEX.txt
+*.pine
+/private/
+/_source/
+
+# Secrets / keys
+.env
+*.key
+config.local.js
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.vscode/
+.idea/
+
+# Node (if any tooling is added later)
+node_modules/
+npm-debug.log*
+
+# Build artifacts (manual.html is generated from these, then committed)
+/_build/

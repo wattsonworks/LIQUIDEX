@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="JetBrains Mono,monospace">
+  <rect width="1200" height="630" fill="#0a0d12"/>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <defs>
+    <radialGradient id="g" cx="78%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#00FF41" stop-opacity=".10"/>
+      <stop offset="60%" stop-color="#00E5FF" stop-opacity=".04"/>
+      <stop offset="100%" stop-color="#0a0d12" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- liquidity lines -->
+  <line x1="60" y1="150" x2="1140" y2="150" stroke="#FF5252" stroke-width="4"/>
+  <text x="1150" y="156" fill="#FF5252" font-size="20" font-weight="700" text-anchor="end">EQH ×3 $$$</text>
+  <line x1="60" y1="470" x2="1140" y2="470" stroke="#26C6DA" stroke-width="3"/>
+  <text x="1150" y="476" fill="#26C6DA" font-size="20" font-weight="700" text-anchor="end">SSL ×2 $$</text>
+  <line x1="60" y1="540" x2="1140" y2="540" stroke="#717b8a" stroke-width="2" stroke-dasharray="4 4"/>
+  <!-- brand -->
+  <circle cx="78" cy="86" r="9" fill="#00FF41"/>
+  <text x="98" y="94" fill="#e8eaed" font-size="30" font-weight="700" letter-spacing="6">LIQUIDEX</text>
+  <text x="60" y="300" fill="#e8eaed" font-size="76" font-weight="800" font-family="Inter,sans-serif">Trade <tspan fill="#00FF41">with</tspan> the big fish.</text>
+  <text x="60" y="372" fill="#9aa3b0" font-size="34" font-family="Inter,sans-serif">Never be their <tspan fill="#FF5252">liquidity</tspan>.</text>
+  <text x="60" y="588" fill="#7a8290" font-size="22">Institutional Liquidity Scanner · Pine Script v6 · $100/mo</text>
+</svg>

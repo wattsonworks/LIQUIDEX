@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /LIQUIDEX.txt
+
+Sitemap: https://wattsonworks.github.io/LIQUIDEX/sitemap.xml
