@@ -14,9 +14,9 @@ window.LIQUIDEX_CONFIG = {
   trialDays: 7,             // free trial length — activated with TradingView username only
 
   /* ── Contact / access ────────────────────────────────────── */
-  contactEmail: "FILL ME — your@email.com",     // where buyers send their TradingView username
+  contactEmail: "fraps32@gmail.com",            // ← "Send by email" button target. Change if you want a different inbox.
   telegram: "",                                  // optional: "https://t.me/yourhandle"
-  whatsapp: "",                                  // optional: "+9725XXXXXXXX" (digits only, intl)
+  whatsapp: "",                                  // 👉 FILL ME — your WhatsApp number, intl digits e.g. "9725XXXXXXXX" (powers the "Send on WhatsApp" button)
   supportHours: { he: "א׳–ה׳ 09:00–18:00", en: "Sun–Thu 09:00–18:00 (Israel time)" },
 
   /* ── Payment methods ─────────────────────────────────────────

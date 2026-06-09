@@ -142,6 +142,10 @@ h2.title{font-size:clamp(28px,4.4vw,46px);margin-bottom:14px}
 .btn-outline:hover{border-color:var(--green);color:var(--green)}
 .btn-ghost{background:var(--bg-3);color:var(--ink-2);border-color:var(--line)}
 .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-wa{background:#25D366;color:#04210d}
+.btn-wa:hover{background:#1fbe5a;transform:translateY(-2px)}
+.btn-sm{padding:9px 16px;font-size:13.5px}
+.send-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
 .btn-lg{padding:16px 30px;font-size:16.5px}
 .btn-block{display:flex;width:100%}
 

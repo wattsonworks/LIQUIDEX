@@ -19,9 +19,9 @@
     <p class="lede mb-3" data-he="כדי להפעיל את הגישה, שלחו לנו את שם המשתמש שלכם ב-TradingView (וצילום אישור התשלום). נעניק גישת Invite-Only תוך 24 שעות." data-en="To activate access, send us your TradingView username (and the payment receipt). We grant invite-only access within 24 hours."></p>
 
     <div class="panel" style="padding:22px">
-      <h4 data-he="העתיקו ושלחו אלינו:" data-en="Copy this and send it to us:"></h4>
+      <h4 data-he="שלחו לנו את שם המשתמש — בחרו דרך:" data-en="Send us your username — pick a way:"></h4>
       <div class="copy-row"><span id="msg"></span><button id="copybtn" data-he="העתק" data-en="Copy"></button></div>
-      <p class="mt-2" style="color:var(--muted)"><span data-he="לכתובת:" data-en="To:"></span> <b class="g" id="email"></b></p>
+      <div id="sendbox" class="send-actions"></div>
     </div>
 
     <a class="btn btn-outline mt-3" href="index.html" data-he="חזרה לדף הבית" data-en="Back to home"></a>
@@ -34,8 +34,6 @@
 <script>
 (function(){
   var c = window.LIQUIDEX_CONFIG || {};
-  var email = (c.contactEmail||"");
-  document.getElementById('email').textContent = email;
   function render(){
     var he = window.LIQ_I18N && window.LIQ_I18N.current === 'he';
     var msg = he
@@ -43,6 +41,11 @@
       : "Hi, I paid for a LIQUIDEX membership. My TradingView username is: ______  (payment receipt attached).";
     document.getElementById('msg').textContent = msg;
     document.getElementById('copybtn').setAttribute('data-copy', msg);
+    var email = c.contactEmail || "", wa = (c.whatsapp || "").replace(/[^0-9]/g, "");
+    var subj = encodeURIComponent("LIQUIDEX access"), body = encodeURIComponent(msg), html = "";
+    if (email && !/FILL ME/i.test(email)) html += '<a class="btn btn-primary" href="mailto:'+email+'?subject='+subj+'&body='+body+'">'+(he?'✉ שליחה במייל':'✉ Send by email')+'</a>';
+    if (wa) html += '<a class="btn btn-wa" target="_blank" rel="noopener" href="https://wa.me/'+wa+'?text='+body+'">'+(he?'שליחה ב-WhatsApp':'Send on WhatsApp')+'</a>';
+    document.getElementById('sendbox').innerHTML = html;
   }
   render();
   document.addEventListener('langchange', render);

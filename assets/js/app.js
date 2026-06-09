@@ -85,11 +85,33 @@
             <div class="detail-row"><span><b>${t("סה״כ", "Total")}</b></span><span><b>${money(withVat(base))} / ${t("חודש", "mo")}</b></span></div>`;
   }
 
+  function waLink(msg) {
+    const wa = (window.LIQUIDEX_CONFIG?.whatsapp || "").replace(/[^0-9]/g, "");
+    return wa ? `https://wa.me/${wa}?text=${encodeURIComponent(msg)}` : "";
+  }
+  function mailLink(subj, msg) {
+    const e = window.LIQUIDEX_CONFIG?.contactEmail || "";
+    return (e && !/FILL ME/i.test(e)) ? `mailto:${e}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(msg)}` : "";
+  }
+  // Two-option username send: Email + WhatsApp (+ small copy fallback)
+  function usernameSend(msgHe, msgEn, subjHe, subjEn) {
+    const he = window.LIQ_I18N?.current === "he";
+    const msg = he ? msgHe : msgEn, subj = he ? subjHe : subjEn;
+    const ml = mailLink(subj, msg), wl = waLink(msg);
+    let h = `<div class="send-actions">`;
+    if (ml) h += `<a class="btn btn-primary" href="${ml}">✉&nbsp; ${t("שליחה במייל", "Send by email")}</a>`;
+    if (wl) h += `<a class="btn btn-wa" href="${wl}" target="_blank" rel="noopener">${t("שליחה ב-WhatsApp", "Send on WhatsApp")}</a>`;
+    h += `<button class="btn btn-outline btn-sm" data-copy="${msg.replace(/"/g, "&quot;")}">${t("העתקה", "Copy")}</button></div>`;
+    if (!ml && !wl) h += `<p style="font-size:12.5px;color:var(--muted-2);margin-top:8px">${t("הגדירו אימייל / וואטסאפ ב-config.js", "Set email / WhatsApp in config.js")}</p>`;
+    return h;
+  }
   function accessBlock(c) {
+    const msgHe = "שלום, שילמתי על מנוי LIQUIDEX. שם המשתמש שלי ב-TradingView: ______";
+    const msgEn = "Hi, I paid for a LIQUIDEX membership. My TradingView username is: ______";
     return `<p style="color:var(--muted);font-size:14px;margin-top:16px">
-      ${t("לאחר התשלום, שלחו את שם המשתמש שלכם ב-TradingView לקבלת גישה (Invite-Only) תוך 24 שעות:",
-           "After payment, send your TradingView username to receive invite-only access within 24h:")}
-      <br><b class="g">${c.contactEmail}</b></p>`;
+      ${t("לאחר התשלום, שלחו את שם המשתמש שלכם ב-TradingView באחת משתי הדרכים — וקבלו גישת Invite-Only תוך 24 שעות:",
+           "After payment, send your TradingView username one of two ways — invite-only access within 24h:")}</p>
+      ${usernameSend(msgHe, msgEn, "LIQUIDEX access", "LIQUIDEX access")}`;
   }
 
   function buildPanel(id, m, base, c) {
@@ -172,20 +194,10 @@
         const u = (input.value || "").trim().replace(/^@/, "");
         if (!u) { input.classList.add("err"); input.focus(); return; }
         input.classList.remove("err");
-        const msg = buildTrialMsg(u, days);
-        const email = c.contactEmail || "";
-        const wa = (c.whatsapp || "").replace(/[^0-9]/g, "");
-        const tg = c.telegram || "";
-        const subj = encodeURIComponent("LIQUIDEX — " + days + "-day free trial");
-        const body = encodeURIComponent(msg);
-        let btns = "";
-        if (email && !/FILL ME/i.test(email))
-          btns += `<a class="btn btn-primary" href="mailto:${email}?subject=${subj}&body=${body}">${t("שליחה במייל", "Send by email")}</a>`;
-        if (wa) btns += `<a class="btn btn-ghost" target="_blank" rel="noopener" href="https://wa.me/${wa}?text=${body}">WhatsApp</a>`;
-        if (tg) btns += `<a class="btn btn-ghost" target="_blank" rel="noopener" href="${tg}">Telegram</a>`;
-        btns += `<button class="btn btn-outline" data-copy="${msg.replace(/"/g, "&quot;")}">${t("העתקת ההודעה", "Copy message")}</button>`;
-        out.innerHTML = `<div class="trial-actions">${btns}</div>
-          <p class="g trial-ok">${t("שלחו לנו את ההודעה ונפעיל את הניסיון תוך 24 שעות.", "Send us the message and we activate your trial within 24h.")}</p>`;
+        const mHe = `שלום, אני רוצה להפעיל ניסיון חינם של ${days} ימים ל-LIQUIDEX. שם המשתמש שלי ב-TradingView: ${u}`;
+        const mEn = `Hi, I'd like to activate a free ${days}-day LIQUIDEX trial. My TradingView username is: ${u}`;
+        out.innerHTML = usernameSend(mHe, mEn, "LIQUIDEX — free trial", "LIQUIDEX — free trial") +
+          `<p class="g trial-ok" style="margin-top:10px">${t("שלחו לנו את ההודעה (מייל או WhatsApp) ונפעיל את הניסיון תוך 24 שעות.", "Send us the message (email or WhatsApp) and we activate your trial within 24h.")}</p>`;
       });
     });
   }
