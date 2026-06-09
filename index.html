@@ -5,12 +5,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LIQUIDEX — Institutional Liquidity Scanner | סורק נזילות מוסדי</title>
 <meta name="description" data-he-doc content="LIQUIDEX — סורק נזילות מוסדי ל-TradingView. ממפה היכן נחות פקודות העצירה של הכסף הגדול, חוזה איזה מאגר ייצוד, ומסמן את הנר המדויק שבו מפל החיסול מתרוקן. $100 לחודש.">
+<link rel="canonical" href="https://wattsonworks.github.io/LIQUIDEX/">
 <meta property="og:title" content="LIQUIDEX — Institutional Liquidity Scanner">
 <meta property="og:description" content="Trade with the big fish, not as their liquidity. Map stop-liquidity, predict the hunt, time the cascade exhaustion.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="og-image.svg">
+<meta property="og:url" content="https://wattsonworks.github.io/LIQUIDEX/">
+<meta property="og:image" content="https://wattsonworks.github.io/LIQUIDEX/og-image.svg">
+<meta property="og:site_name" content="LIQUIDEX">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LIQUIDEX — Institutional Liquidity Scanner">
+<meta name="twitter:description" content="Map institutional stop-liquidity, predict which pool the market hunts next, and time the liquidation-cascade exhaustion. Pine Script v6 for TradingView.">
+<meta name="twitter:image" content="https://wattsonworks.github.io/LIQUIDEX/og-image.svg">
 <meta name="theme-color" content="#0a0d12">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://wattsonworks.github.io/LIQUIDEX/#app",
+      "name": "LIQUIDEX",
+      "alternateName": "LIQUIDEX — Institutional Liquidity Scanner",
+      "applicationCategory": "FinanceApplication",
+      "applicationSubCategory": "TradingView Pine Script indicator",
+      "operatingSystem": "TradingView (web)",
+      "url": "https://wattsonworks.github.io/LIQUIDEX/",
+      "image": "https://wattsonworks.github.io/LIQUIDEX/og-image.svg",
+      "description": "A premium TradingView / Pine Script v6 indicator that maps where institutional stop-liquidity rests, predicts which pool the market hunts next, and calls the exact bar a liquidation cascade exhausts.",
+      "inLanguage": ["en", "he"],
+      "offers": {
+        "@type": "Offer",
+        "price": "100",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "100",
+          "priceCurrency": "USD",
+          "unitText": "month",
+          "billingDuration": 1,
+          "billingIncrement": 1
+        },
+        "category": "Subscription",
+        "url": "https://wattsonworks.github.io/LIQUIDEX/checkout.html"
+      },
+      "publisher": { "@id": "https://wattsonworks.github.io/LIQUIDEX/#avi-mor" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://wattsonworks.github.io/LIQUIDEX/#website",
+      "url": "https://wattsonworks.github.io/LIQUIDEX/",
+      "name": "LIQUIDEX",
+      "inLanguage": ["en", "he"],
+      "publisher": { "@id": "https://wattsonworks.github.io/LIQUIDEX/#avi-mor" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://wattsonworks.github.io/LIQUIDEX/#avi-mor",
+      "name": "Avi Mor",
+      "alternateName": "אבי מור",
+      "legalName": "Avi Mor",
+      "taxID": "303092126",
+      "vatID": "303092126",
+      "identifier": [{
+        "@type": "PropertyValue",
+        "propertyID": "Israeli Osek Murshe (עוסק מורשה)",
+        "value": "303092126"
+      }],
+      "address": { "@type": "PostalAddress", "addressCountry": "IL" },
+      "sameAs": ["https://github.com/wattsonworks"]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Heebo:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -23,6 +91,7 @@
   <div class="nav-in">
     <a class="brand" href="index.html"><span class="dot"></span>LIQUIDEX</a>
     <div class="nav-links">
+      <a href="#learn" data-he="ללמוד לקרוא" data-en="How to read"></a>
       <a href="#thesis" data-he="התזה" data-en="The Thesis"></a>
       <a href="#cascade" data-he="מפל החיסול" data-en="The Cascade"></a>
       <a href="#science" data-he="המדע" data-en="The Science"></a>
@@ -40,7 +109,7 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow" data-he="Pine Script v6 · מדע הכסף החכם" data-en="Pine Script v6 · Smart Money Science"></p>
+      <p class="eyebrow" data-he="חומר לימודי · Pine Script v6 · מדע הכסף החכם" data-en="Educational material · Pine Script v6 · Smart-Money Science"></p>
       <h1 data-he='לסחור <span class="g">עם</span> הדגים הגדולים — לא להיות <span class="r">הנזילות</span> שלהם.' data-en='Trade <span class="g">with</span> the big fish — never be their <span class="r">liquidity</span>.' data-html></h1>
       <p class="lede" data-he="LIQUIDEX ממפה היכן נחות פקודות העצירה המוסדיות, חוזה איזה מאגר נזילות השוק יצוד בהמשך, ומסמן את הנר המדויק שבו מפל חיסול מתרוקן — כך שאתם נכנסים אל ההיפוך במקום לממן אותו." data-en="LIQUIDEX maps where institutional stop-liquidity rests, predicts which pool the market hunts next, and calls the exact bar a liquidation cascade exhausts — so you enter the reversal instead of funding it."></p>
       <div class="hero-cta">
@@ -73,8 +142,29 @@
   </div>
 </div>
 
+<!-- EDUCATIONAL CORE -->
+<section id="learn">
+  <div class="wrap">
+    <p class="eyebrow center" data-he="חומר לימודי" data-en="Educational material"></p>
+    <h2 class="title center" data-he='גרף הוא לא סיגנל אחד — הוא <span class="g">עשרות כוחות שמתקשרים</span>.' data-en='A chart is not one signal — it is <span class="g">dozens of forces relating</span>.' data-html></h2>
+    <p class="lede center mb-3" data-he="המחיר הוא רק הקצה הגלוי. מתחתיו — מאגרי נזילות, דלתא מצטברת (CVD), אזורי ערך, אזורי הזמנות, פערי FVG ומשטר התנודתיות — עשרות כוחות נעים בו-זמנית, וכל אחד מהם קשור לאחרים. LIQUIDEX הוא חומר לימודי שהופך את הקשרים האלה לגלויים ומלמד אותך לקרוא אותם — כדי שתֵדע מה השוק עושה, במקום לנחש." data-en="Price is only the visible tip. Beneath it — liquidity pools, cumulative delta (CVD), value areas, order blocks, fair-value gaps and the volatility regime — dozens of forces move at once, and every one relates to the others. LIQUIDEX is educational material that makes those relationships visible and teaches you to read them — so you actually know what the market is doing, instead of guessing."></p>
+    <div class="grid g-2 mt-4" style="align-items:center;gap:40px">
+      <div class="reveal">
+        <div class="card mb-2"><h4 class="g" data-he="① לראות את כל הלוח" data-en="① See the whole board"></h4><p style="color:var(--muted);margin:.4rem 0 0" data-he="לא אינדיקטור בודד — נזילות, זרימת הזמנות, ערך, מבנה ומשטר על מסך אחד, מסונכרנים." data-en="Not one indicator — liquidity, order flow, value, structure and regime on one synchronized screen."></p></div>
+        <div class="card mb-2"><h4 class="g" data-he="② להבין את הקשרים" data-en="② Understand the links"></h4><p style="color:var(--muted);margin:.4rem 0 0" data-he="איך POC מושך מחיר אל FVG, איך CVD מאשר או סותר תנועה, איך מאגר נזילות מצית מפל חיסול — הקשרים, לא ניחושים." data-en="How a POC pulls price toward an FVG, how CVD confirms or contradicts a move, how a liquidity pool ignites a cascade — the relationships, not guesses."></p></div>
+        <div class="card"><h4 class="g" data-he="③ לדעת, לא לנחש" data-en="③ Know, don't guess"></h4><p style="color:var(--muted);margin:.4rem 0 0" data-he="כשאתה רואה איך החלקים מתחברים, אתה קורא את הסיפור של השוק בעצמך. זו כל המטרה." data-en="When you see how the pieces connect, you read the market's story yourself. That is the entire point."></p></div>
+      </div>
+      <div class="terminal reveal">
+        <div class="terminal-bar"><i style="background:#ff5f56"></i><i style="background:#ffbd2e"></i><i style="background:#27c93f"></i><span class="t">forces relating · a read, not a guess</span></div>
+        <div class="terminal-body" data-chart="confluence"></div>
+      </div>
+    </div>
+    <p class="center mt-4" style="color:var(--muted-2);font-size:14.5px" data-he="כלי ניתוח וחינוך — נבנה כדי ללמד אותך לקרוא את השוק, לא כדי למסור סיגנלים לעקוב אחריהם בעיניים עצומות." data-en="An analysis & education tool — built to teach you to read the market, not to hand you signals to follow blindly."></p>
+  </div>
+</section>
+
 <!-- THESIS -->
-<section id="thesis">
+<section id="thesis" style="background:rgba(0,0,0,.18)">
   <div class="wrap">
     <p class="eyebrow center" data-he="הבעיה" data-en="The Problem"></p>
     <h2 class="title center" data-he='הסטופ שלך הוא <span class="g">הדלק</span> שלהם.' data-en='Your stop-loss is <span class="g">their</span> fuel.' data-html></h2>
@@ -326,6 +416,7 @@
       <span data-he=" — LIQUIDEX הוא כלי לניתוח טכני ולחינוך בלבד ואינו מהווה ייעוץ השקעות, שיווק השקעות או המלצת מסחר. ביצועי עבר אינם מבטיחים תוצאות עתידיות. מסחר בנכסים פיננסיים, ובמיוחד בקריפטו ובמינוף, כרוך בסיכון משמעותי לאובדן הון. אינך חייב לסחור על סמך הכלי, וכל החלטה היא באחריותך בלבד." data-en=" — LIQUIDEX is a technical-analysis and educational tool only and does not constitute investment advice, investment marketing, or a trading recommendation. Past performance does not guarantee future results. Trading financial assets — especially crypto and with leverage — carries significant risk of capital loss. You are under no obligation to trade based on this tool, and every decision is solely your responsibility."></span>
     </div>
     <p style="margin-top:24px;font-size:13px;color:var(--muted-2)">© <span data-year></span> LIQUIDEX · wattsonworks. <span data-he="כל הזכויות שמורות." data-en="All rights reserved."></span></p>
+    <p style="margin-top:6px;font-size:12px;color:var(--muted-2);opacity:.75" data-he="אבי מור · עוסק מורשה · 303092126" data-en="Avi Mor · Israeli Osek Murshe (אבי מור · עוסק מורשה) · 303092126"></p>
   </div>
 </footer>
 
