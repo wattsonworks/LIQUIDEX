@@ -17,7 +17,7 @@ window.LIQUIDEX_CONFIG = {
   contactEmail: "fraps32@gmail.com",            // ← "Send by email" button target. Change if you want a different inbox.
   telegram: "",                                  // optional: "https://t.me/yourhandle"
   whatsapp: "",                                  // 👉 FILL ME — your WhatsApp number, intl digits e.g. "9725XXXXXXXX" (powers the "Send on WhatsApp" button)
-  supportHours: { he: "א׳–ה׳ 09:00–18:00", en: "Sun–Thu 09:00–18:00 (Israel time)" },
+  supportHours: { he: "א׳–ה׳ 09:00–18:00", en: "Sun–Thu 09:00–18:00 (Israel time)", ar: "الأحد–الخميس 09:00–18:00 (بتوقيت إسرائيل)" },
 
   /* ── Payment methods ─────────────────────────────────────────
      Set `enabled:false` to hide a method. `vat:true` adds 18% on top.
@@ -61,7 +61,7 @@ window.LIQUIDEX_CONFIG = {
       enabled: true,
       vat: false,
       // FILL ME — how/where cash is handed over, or remove if not offered publicly:
-      note: { he: "תיאום מסירה במזומן בהודעה.", en: "Arrange cash handover by message." },
+      note: { he: "תיאום מסירה במזומן בהודעה.", en: "Arrange cash handover by message.", ar: "نسّق تسليم النقد عبر رسالة." },
     },
   },
 

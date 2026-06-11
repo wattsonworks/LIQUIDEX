@@ -2,7 +2,22 @@
    ║  LIQUIDEX — app interactions                                  ║
    ╚══════════════════════════════════════════════════════════════╝ */
 (function () {
-  const t = (he, en) => (window.LIQ_I18N?.current === "en" ? en : he);
+  // he/en + optional explicit ar; otherwise Arabic resolves via the LIQ_AR
+  // dictionary keyed by the Hebrew source, falling back to English.
+  const t = (he, en, ar) => {
+    const l = window.LIQ_I18N?.current;
+    if (l === "ar") {
+      if (ar != null) return ar;
+      const M = window.LIQ_AR;
+      if (M && Object.prototype.hasOwnProperty.call(M, he)) return M[he];
+      return en;
+    }
+    return l === "en" ? en : he;
+  };
+  const lang3 = (he, en, ar) => {
+    const l = window.LIQ_I18N?.current;
+    return l === "ar" ? (ar ?? en) : l === "en" ? en : he;
+  };
 
   /* ── Reveal on scroll ──────────────────────────────────────── */
   const io = "IntersectionObserver" in window
@@ -94,9 +109,8 @@
     return (e && !/FILL ME/i.test(e)) ? `mailto:${e}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(msg)}` : "";
   }
   // Two-option username send: Email + WhatsApp (+ small copy fallback)
-  function usernameSend(msgHe, msgEn, subjHe, subjEn) {
-    const he = window.LIQ_I18N?.current === "he";
-    const msg = he ? msgHe : msgEn, subj = he ? subjHe : subjEn;
+  function usernameSend(msgHe, msgEn, subjHe, subjEn, msgAr) {
+    const msg = lang3(msgHe, msgEn, msgAr), subj = lang3(subjHe, subjEn, subjEn);
     const ml = mailLink(subj, msg), wl = waLink(msg);
     let h = `<div class="send-actions">`;
     if (ml) h += `<a class="btn btn-primary" href="${ml}">✉&nbsp; ${t("שליחה במייל", "Send by email")}</a>`;
@@ -108,10 +122,11 @@
   function accessBlock(c) {
     const msgHe = "שלום, שילמתי על מנוי LIQUIDEX. שם המשתמש שלי ב-TradingView: ______";
     const msgEn = "Hi, I paid for a LIQUIDEX membership. My TradingView username is: ______";
+    const msgAr = "مرحبًا، دفعت اشتراك LIQUIDEX. اسم مستخدمي في TradingView: ______";
     return `<p style="color:var(--muted);font-size:14px;margin-top:16px">
       ${t("לאחר התשלום, שלחו את שם המשתמש שלכם ב-TradingView באחת משתי הדרכים — וקבלו גישת Invite-Only תוך 24 שעות:",
            "After payment, send your TradingView username one of two ways — invite-only access within 24h:")}</p>
-      ${usernameSend(msgHe, msgEn, "LIQUIDEX access", "LIQUIDEX access")}`;
+      ${usernameSend(msgHe, msgEn, "LIQUIDEX access", "LIQUIDEX access", msgAr)}`;
   }
 
   function buildPanel(id, m, base, c) {
@@ -159,7 +174,7 @@
     }
     if (id === "cash") {
       return `<h4>${t("מזומן", "Cash")}</h4>${priceLine(m.vat, base)}
-        <p style="color:var(--muted)">${t(P.cash.note.he, P.cash.note.en)}</p>${accessBlock(c)}`;
+        <p style="color:var(--muted)">${lang3(P.cash.note.he, P.cash.note.en, P.cash.note.ar)}</p>${accessBlock(c)}`;
     }
     return "";
   }
@@ -178,7 +193,7 @@
     const days = c.trialDays || 7;
     hosts.forEach((host) => {
       host.innerHTML = `
-        <span class="tag">${t("🎁 " + days + " ימים חינם", "🎁 " + days + " days free")}</span>
+        <span class="tag">${t("🎁 " + days + " ימים חינם", "🎁 " + days + " days free", "🎁 " + days + " يوم مجانًا")}</span>
         <h3>${t("נסו שבוע על חשבוננו", "Try a week on us")}</h3>
         <p class="trial-sub">${t("רק שם המשתמש שלכם ב-TradingView. ללא כרטיס אשראי, ללא התחייבות.", "Just your TradingView username. No card, no commitment.")}</p>
         <div class="trial-row">
@@ -187,7 +202,7 @@
           <button class="btn btn-primary" data-trial-go>${t("הפעילו שבוע חינם", "Activate free week")}</button>
         </div>
         <div data-trial-out></div>
-        <small class="trial-note">${t("גישת Invite-Only ל-" + days + " ימים תוך 24 שעות.", "Invite-only access for " + days + " days within 24h.")}</small>`;
+        <small class="trial-note">${t("גישת Invite-Only ל-" + days + " ימים תוך 24 שעות.", "Invite-only access for " + days + " days within 24h.", "وصول بالدعوة فقط لمدّة " + days + " أيّام خلال 24 ساعة.")}</small>`;
       const input = host.querySelector(".trial-input");
       const out = host.querySelector("[data-trial-out]");
       host.querySelector("[data-trial-go]").addEventListener("click", () => {
@@ -196,7 +211,8 @@
         input.classList.remove("err");
         const mHe = `שלום, אני רוצה להפעיל ניסיון חינם של ${days} ימים ל-LIQUIDEX. שם המשתמש שלי ב-TradingView: ${u}`;
         const mEn = `Hi, I'd like to activate a free ${days}-day LIQUIDEX trial. My TradingView username is: ${u}`;
-        out.innerHTML = usernameSend(mHe, mEn, "LIQUIDEX — free trial", "LIQUIDEX — free trial") +
+        const mAr = `مرحبًا، أريد تفعيل تجربة LIQUIDEX المجانية لمدّة ${days} أيّام. اسم مستخدمي في TradingView: ${u}`;
+        out.innerHTML = usernameSend(mHe, mEn, "LIQUIDEX — free trial", "LIQUIDEX — free trial", mAr) +
           `<p class="g trial-ok" style="margin-top:10px">${t("שלחו לנו את ההודעה (מייל או WhatsApp) ונפעיל את הניסיון תוך 24 שעות.", "Send us the message (email or WhatsApp) and we activate your trial within 24h.")}</p>`;
       });
     });
